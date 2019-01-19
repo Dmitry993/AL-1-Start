@@ -45,6 +45,7 @@
     <Compile Include="Lesson.Counter.cs" />
     <Compile Include="Lesson.Shape.cs" />
     <Compile Include="Lesson.Transport.cs" />
+    <Compile Include="Market.cs" />
     <Compile Include="Practice.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
