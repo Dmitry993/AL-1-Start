@@ -18,11 +18,13 @@ namespace Advanced_Lesson_1_OOP
             unknowedTransport = new FuelCar() { FuelUsage = 10, Fuel = 45, Distance = 25045 };
             //var fuel = unknowedTransport.Fuel;
 
-            FuelCar maserati = new FuelCar() { FuelUsage = 10, Fuel = 45, Distance = 25045 };
+            FuelCar maserati = new FuelCar() { FuelUsage = 10, Fuel = 45, Distance = 25045, Engine = 300 };
+            FuelCar geely = new FuelCar() { FuelUsage = 10, Fuel = 45, Distance = 25045, Engine = 150 };
+
             Transport winner = maserati;
             FuelCar firstPlace = (FuelCar)winner;
-
-        }   
+            Console.WriteLine(maserati == geely);
+        }
     }
 
     public class Transport
@@ -56,6 +58,36 @@ namespace Advanced_Lesson_1_OOP
             base.Move(km);
             this.Fuel -= km * FuelUsage / 100;
         }
+
+        public static bool operator <(FuelCar car1, FuelCar car2)
+        {
+            return car1.Engine < car2.Engine;
+        }
+
+        public static bool operator >(FuelCar car1, FuelCar car2)
+        {
+            return car1.Engine > car2.Engine;
+        }
+
+        public static bool operator ==(FuelCar car1, FuelCar car2)
+        {
+            return Equals(car1, car2);
+        }
+
+        public static bool operator !=(FuelCar car1, FuelCar car2)
+        {
+            return !Equals(car1, car2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is FuelCar fuelCar)
+            {
+                return Math.Abs(Engine - fuelCar.Engine) < 0.01;
+            }
+
+            return false;
+        }
     }
 
     public class ElectroCar : Car
@@ -70,5 +102,4 @@ namespace Advanced_Lesson_1_OOP
             this.Charged -= Battery * km / DistanceBattery;
         }
     }
-
 }
